@@ -1,5 +1,7 @@
 'use strict';
 
+// This line is to pass jshint
+var angular = angular || null;
 
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
@@ -9,8 +11,11 @@ angular.module('myApp', [
   'myApp.directives',
   'myApp.controllers'
 ]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-  $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+config(['$routeProvider', '$locationProvider',
+        function($routeProvider, $locationProvider) {
+            $routeProvider.when('/', {templateUrl: 'partials/login.html', controller: 'AuthCtrl'});
+            $routeProvider.when('/dashboard', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
+            $routeProvider.otherwise({templateUrl: 'partials/login.html', controller: 'AuthCtrl'});
+            $locationProvider.html5Mode(true);
+        }
+       ]);
