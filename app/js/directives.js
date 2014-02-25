@@ -2,6 +2,8 @@
 
 /* Directives */
 
+// This line is to pass jshint
+var angular = angular || null;
 
 angular.module('myApp.directives', []).
   directive('appVersion', ['version', function(version) {
